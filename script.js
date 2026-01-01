@@ -1,31 +1,57 @@
-let firstName = "Tahir";
-let lastName = "Abbas";
+// My favorite fruits
+const fruits = ["Apple", "Banana", "Mango", "Orange", "Pineapple"];
 
-// 1. Concatenation using +
-let fullName1 = firstName + " " + lastName;
-console.log("Full name using + :", fullName1);
+console.log("Original array:", fruits);
 
-// 2. Template literals
-let fullName2 = `${firstName} ${lastName}`;
-console.log("Full name using template literals:", fullName2);
+// 1. Access first, last, and middle elements
+const firstFruit = fruits[0];
+const lastFruit = fruits[fruits.length - 1];
+const middleFruit = fruits[Math.floor(fruits.length / 2)];
 
-// 3. String methods
-console.log("Full name length:", fullName2.length); // .length
-console.log("Uppercase full name:", fullName2.toUpperCase()); // .toUpperCase()
-console.log("First name using slice:", fullName2.slice(0, firstName.length)); // .slice()
-console.log("Does full name include 'a'? :", fullName2.includes("a")); // .includes()
+console.log("First fruit:", firstFruit);
+console.log("Middle fruit:", middleFruit);
+console.log("Last fruit:", lastFruit);
 
-// 4. Multi-line message using template literals
-let message = `Hello ${firstName},
+// 2. Add and Remove fruits
+fruits.unshift("Strawberry"); // add at start
+fruits.push("Grapes"); // add at end
+console.log("After adding fruits:", fruits);
 
-Welcome to our platform. 
-We are glad to have you here.
+fruits.shift(); // remove from start
+fruits.pop(); // remove from end
+console.log("After removing fruits:", fruits);
 
-Best regards,
-The Team`;
-console.log("\nMulti-line message:\n", message);
+// 3. Subarray using slice
+const citrusFruits = fruits.slice(2, 4); // from index 2 to 3 (4 not included)
+console.log("Subarray (slice):", citrusFruits);
 
-// 5. Combine strings and numbers using template literals
-let age = 25;
-let professionalMessage = `${fullName2} is ${age} years old and a skilled software engineer.`;
-console.log("\nString + number message:", professionalMessage);
+// 4. Search
+console.log("Does array include 'Mango'? :", fruits.includes("Mango"));
+console.log("Index of 'Banana':", fruits.indexOf("Banana"));
+
+// 5. Looping through array
+console.log("Loop using for:");
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
+
+console.log("Loop using for...of:");
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+
+console.log("Loop using forEach:");
+fruits.forEach((fruit) => console.log(fruit));
+
+// 6. Transform array
+// map → uppercase
+const upperFruits = fruits.map((fruit) => fruit.toUpperCase());
+console.log("Uppercase fruits:", upperFruits);
+
+// filter → fruits with length > 5
+const longFruits = fruits.filter((fruit) => fruit.length > 5);
+console.log("Fruits with length > 5:", longFruits);
+
+// reduce → total length of all fruit names
+const totalLength = fruits.reduce((sum, fruit) => sum + fruit.length, 0);
+console.log("Total length of all fruit names:", totalLength);
