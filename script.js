@@ -1,56 +1,60 @@
-console.log("JavaScript is running");
-console.log(2 + 3);
-console.log("Hello " + "World");
-console.log(typeof 42);
-console.log(typeof "JavaScript");
-console.log(typeof true);
-console.log(typeof {});
-console.log(typeof []);
+// 1. Primitive Types
+let num = 42; // Number
+let str = "Hello World"; // String
+let bool = true; // Boolean
+let undef; // undefined
+let nul = null; // null
+let bigIntNum = 12345678901234567890n; // BigInt
+let sym = Symbol("id"); // Symbol
 
-var x = 10;
-console.log(x); // 10
+// Logging types
+console.log("num:", num, "typeof:", typeof num);
+console.log("str:", str, "typeof:", typeof str);
+console.log("bool:", bool, "typeof:", typeof bool);
+console.log("undef:", undef, "typeof:", typeof undef);
+console.log("nul:", nul, "typeof:", typeof nul); // interesting quirk: typeof null === "object"
+console.log("bigIntNum:", bigIntNum, "typeof:", typeof bigIntNum);
+console.log("sym:", sym, "typeof:", typeof sym);
 
-var x = 20; // Redeclaration allowed
-console.log(x); // 20
+// 2. Array and Object
+let arr = [1, 2, 3];
+let obj = { name: "Tahir", age: 25 };
 
-if (true) {
-  var x = 30; // function/global scoped
-  console.log(x); // 30
-}
-console.log(x); // 30 (overwritten!)
-// Problem: var ignores block scope → leads to bugs. That’s why professionals mostly avoid it.
+console.log(
+  "arr:",
+  arr,
+  "typeof:",
+  typeof arr,
+  "Array.isArray:",
+  Array.isArray(arr)
+);
+console.log(
+  "obj:",
+  obj,
+  "typeof:",
+  typeof obj,
+  "Array.isArray:",
+  Array.isArray(obj)
+);
 
-let y = 10;
-y = 20; // ✅ Reassignment allowed
-// let y = 30; // ❌ Redeclaration NOT allowed
+// 3. Dynamic Typing
+let dynamicVar = 100;
+console.log("dynamicVar:", dynamicVar, "typeof:", typeof dynamicVar);
 
-if (true) {
-  let y = 50; // ✅ Block scoped
-  console.log(y); // 50
-}
-console.log(y); // 20 (outer y unaffected)
+dynamicVar = "Now I am a string";
+console.log("dynamicVar:", dynamicVar, "typeof:", typeof dynamicVar);
 
-const z = 100;
-// z = 200; // ❌ Cannot reassign
+dynamicVar = false;
+console.log("dynamicVar:", dynamicVar, "typeof:", typeof dynamicVar);
 
-const person = { name: "Tahir" };
-person.name = "Ali"; // ✅ Allowed! Object properties can change
-console.log(person.name); // Ali
+// 4. Null vs Undefined
+let a; // undefined
+let b = null; // explicitly null
 
-function test() {
-  var a = 1;
-  let b = 2;
-  const c = 3;
-  console.log(a, b, c); // 1 2 3
-}
-test();
-// console.log(a, b, c); // ❌ Error: not defined
+console.log("a:", a, "typeof:", typeof a); // undefined
+console.log("b:", b, "typeof:", typeof b); // object (JS quirk)
 
-console.log(a); // undefined (var is hoisted)
-var a = 10;
-
-console.log(b); // ❌ Error: Cannot access 'b' before initialization
-let b = 20;
-
-console.log(c); // ❌ Error: Cannot access 'c' before initialization
-const c = 30;
+console.log("a === undefined:", a === undefined); // true
+console.log("b === null:", b === null); // true
+console.log("a == b:", a == b); // true, because JS converts undefined and null loosely equal
+console.log("a === b:", a === b); // false, strict equality
