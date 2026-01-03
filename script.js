@@ -1,18 +1,21 @@
-const prices = [100, 200, 300];
-const taxRate = prices.map((price) => {
-  return price * 1.1;
-});
-console.log(taxRate);
+const ages = [12, 18, 25, 14, 30];
+const isAdult = ages.filter((age) => age >= 18);
+console.log(isAdult); // Output: [18, 25, 30]
 
-const students = [
-  { name: "Tahir", marks: 80 },
-  { name: "Adeel", marks: 45 },
-  { name: "Ali", marks: 60 },
+const products = [
+  { name: "Laptop", price: 900 },
+  { name: "Phone", price: 500 },
+  { name: "Tablet", price: 300 },
+  { name: "Monitor", price: 200 },
 ];
 
-const results = students.map((student) => ({
-  name: student.name,
-  result: student.marks >= 50 ? "Pass" : "Fail",
-}));
+const affordableProducts = products.filter((product) => product.price < 500);
+console.log(affordableProducts);
 
-console.log(results);
+const users = [
+  { name: "Tahir", active: true },
+  { name: "Adeel", active: false },
+  { name: "Ali", active: true },
+];
+const activeUsers = users.filter((user) => user.active);
+console.log(activeUsers.map((user) => user.name));
