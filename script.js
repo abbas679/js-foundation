@@ -1,28 +1,43 @@
-const nums = [10, 20, 30];
+const numbers = [1, 2, 3, 4, 5];
 
-const total = nums.reduce((accumtulator, currentValue) => {
-  return accumtulator + currentValue;
-}, 0);
+const squaredNumbers = numbers.map((num) => num * num);
 
-console.log(total); // Output: 60
+console.log(squaredNumbers);
 
-const orders = [
-  { product: "Book", price: 20 },
-  { product: "Pen", price: 5 },
-  { product: "Bag", price: 50 },
+const squaredNumbersAlt = [];
+for (let i = 0; i < numbers.length; i++) {
+  squaredNumbersAlt.push(numbers[i] * numbers[i]);
+}
+console.log(squaredNumbersAlt);
+
+const words = ["apple", "banana", "cat", "dog"];
+const wordlengths = words
+  .filter((word) => word.length > 3)
+  .map((word) => word.length);
+console.log(wordlengths);
+
+const wordlengthsAlt = [];
+for (let i = 0; i < words.length; i++) {
+  if (words[i].length > 3) {
+    wordlengthsAlt.push(words[i].length);
+  }
+}
+console.log(wordlengthsAlt);
+
+const students = [
+  { name: "Tahir", marks: 80 },
+  { name: "Adeel", marks: 45 },
+  { name: "Ali", marks: 60 },
 ];
+const passedStudents = students
+  .filter((student) => student.marks >= 50)
+  .map((student) => student.name);
+console.log(passedStudents);
 
-const totalPrice = orders.reduce((accumulator, order) => {
-  return accumulator + order.price;
-}, 0);
-
-console.log(totalPrice); // Output: 75
-
-const votes = ["yes", "no", "yes", "yes", "no"];
-
-const voteCount = votes.reduce((acc, vote) => {
-  acc[vote] = (acc[vote] || 0) + 1;
-  return acc;
-}, {});
-
-console.log(voteCount); // Output: { yes: 3, no: 2 }
+const passedStudentsAlt = [];
+for (let i = 0; i < students.length; i++) {
+  if (students[i].marks >= 50) {
+    passedStudentsAlt.push(students[i].name);
+  }
+}
+console.log(passedStudentsAlt);
