@@ -1,47 +1,76 @@
-// 1. Create object
-const person = {
-  firstName: "Tahir",
-  lastName: "Abbas",
-  age: 25,
-  isStudent: true,
-  hobbies: ["Reading", "Gaming", "Boating"],
-
-  // Method to return full name
-  fullName: function () {
-    return this.firstName + " " + this.lastName;
-  },
+const handleUser = (name, callback) => {
+  callback(name);
 };
 
-console.log("Original person object:", person);
+// Call 1: Welcome message
+handleUser("Adeel", (name) => {
+  console.log(`Welcome, ${name}!`);
+});
 
-// 2. Access properties
-console.log("Access using dot notation:");
-console.log(person.firstName);
-console.log(person.age);
+// Call 2: Uppercase name
+handleUser("Adeel", (name) => {
+  console.log(name.toUpperCase());
+});
 
-console.log("Access using bracket notation:");
-console.log(person["lastName"]);
-console.log(person["hobbies"]);
+// Call 3: Name length
+handleUser("Adeel", (name) => {
+  console.log(name.length);
+});
 
-// 3. Update age and add country
-person.age = 26;
-person.country = "Pakistan";
-console.log("After update and add country:", person);
+const calculate = (num1, num2, operation) => {
+  return operation(num1, num2);
+};
 
-// 4. Delete isStudent
-delete person.isStudent;
-console.log("After deleting isStudent:", person);
+// Call 1: Addition
+const sum = calculate(5, 3, (a, b) => a + b);
+console.log(`Sum: ${sum}`);
+// Call 2: Multiplication
+const product = calculate(5, 3, (a, b) => a * b);
+console.log(`Product: ${product}`);
+// Call 3: Subtraction
+const difference = calculate(5, 3, (a, b) => a - b);
+console.log(`Difference: ${difference}`);
 
-// 5. Use method fullName()
-console.log("Full name using method:", person.fullName());
+const myMap = (array, callback) => {
+  const result = [];
 
-// 6. Loop through all properties
-console.log("Looping through properties:");
-for (let key in person) {
-  console.log(key + ":", person[key]);
-}
+  for (let i = 0; i < array.length; i++) {
+    result.push(callback(array[i], i, array));
+  }
 
-// 7. Destructuring
-const { firstName, hobbies } = person;
-console.log("Destructured firstName:", firstName);
-console.log("Destructured hobbies:", hobbies);
+  return result;
+};
+
+// Test 1: Double numbers
+const numbers = [1, 2, 3, 4];
+const doubled = myMap(numbers, (n) => n * 2);
+console.log(doubled);
+
+// Test 2: Convert to strings
+const stringified = myMap(numbers, (n) => `Number: ${n}`);
+console.log(stringified);
+
+const orderFood = (food, afterOrder) => {
+  console.log(`Order placed for ${food}`);
+  afterOrder(food);
+};
+
+// Cooking callback
+orderFood("Pizza", (food) => {
+  console.log(`${food} is being cooked`);
+});
+
+// Delivery callback
+orderFood("Burger", (food) => {
+  console.log(`${food} is out for delivery`);
+});
+
+const greet = (name) => {
+  return "Hello " + name;
+};
+
+console.log(greet("Adeel"));
+
+const square = (n) => n * n;
+
+console.log(square(6));
