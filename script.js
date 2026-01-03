@@ -1,43 +1,46 @@
-const numbers = [1, 2, 3, 4, 5];
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const squaredNumbers = numbers.map((num) => num * num);
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
 
-console.log(squaredNumbers);
+console.log(evenNumbers); // Output: [2, 4, 6, 8, 10]
 
-const squaredNumbersAlt = [];
-for (let i = 0; i < numbers.length; i++) {
-  squaredNumbersAlt.push(numbers[i] * numbers[i]);
-}
-console.log(squaredNumbersAlt);
+const squaredNumbers = evenNumbers.map((num) => num * num);
 
-const words = ["apple", "banana", "cat", "dog"];
-const wordlengths = words
-  .filter((word) => word.length > 3)
-  .map((word) => word.length);
-console.log(wordlengths);
+console.log(squaredNumbers); // Output: [4, 16, 36, 64, 100]
 
-const wordlengthsAlt = [];
-for (let i = 0; i < words.length; i++) {
-  if (words[i].length > 3) {
-    wordlengthsAlt.push(words[i].length);
-  }
-}
-console.log(wordlengthsAlt);
+const sumOfSquares = squaredNumbers.reduce((acc, num) => acc + num, 0);
 
-const students = [
-  { name: "Tahir", marks: 80 },
-  { name: "Adeel", marks: 45 },
-  { name: "Ali", marks: 60 },
+console.log(sumOfSquares); // Output: 220
+
+const employees = [
+  { name: "Tahir", salary: 5000 },
+  { name: "Adeel", salary: 4000 },
+  { name: "Ali", salary: 6000 },
 ];
-const passedStudents = students
-  .filter((student) => student.marks >= 50)
-  .map((student) => student.name);
-console.log(passedStudents);
 
-const passedStudentsAlt = [];
-for (let i = 0; i < students.length; i++) {
-  if (students[i].marks >= 50) {
-    passedStudentsAlt.push(students[i].name);
-  }
-}
-console.log(passedStudentsAlt);
+const raisedSalaries = employees.map((employee) => {
+  return { ...employee, salary: employee.salary * 1.1 };
+});
+
+console.log(raisedSalaries);
+// Output:
+// [
+//   { name: "Tahir", salary: 5500 },
+//   { name: "Adeel", salary: 4400 },
+//   { name: "Ali", salary: 6600 }
+// ]
+
+const keepHighEarners = raisedSalaries.filter(
+  (employee) => employee.salary > 4500
+);
+console.log(keepHighEarners);
+// Output:
+// [
+//   { name: "Tahir", salary: 5500 },
+//   { name: "Ali", salary: 6600 }
+// ]
+const onlyNames = employees.reduce(
+  (acc, employee) => [...acc, employee.name],
+  []
+);
+console.log(onlyNames); // Output: ["Tahir", "Adeel", "Ali"]
