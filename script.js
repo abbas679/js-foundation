@@ -1,21 +1,28 @@
-const ages = [12, 18, 25, 14, 30];
-const isAdult = ages.filter((age) => age >= 18);
-console.log(isAdult); // Output: [18, 25, 30]
+const nums = [10, 20, 30];
 
-const products = [
-  { name: "Laptop", price: 900 },
-  { name: "Phone", price: 500 },
-  { name: "Tablet", price: 300 },
-  { name: "Monitor", price: 200 },
+const total = nums.reduce((accumtulator, currentValue) => {
+  return accumtulator + currentValue;
+}, 0);
+
+console.log(total); // Output: 60
+
+const orders = [
+  { product: "Book", price: 20 },
+  { product: "Pen", price: 5 },
+  { product: "Bag", price: 50 },
 ];
 
-const affordableProducts = products.filter((product) => product.price < 500);
-console.log(affordableProducts);
+const totalPrice = orders.reduce((accumulator, order) => {
+  return accumulator + order.price;
+}, 0);
 
-const users = [
-  { name: "Tahir", active: true },
-  { name: "Adeel", active: false },
-  { name: "Ali", active: true },
-];
-const activeUsers = users.filter((user) => user.active);
-console.log(activeUsers.map((user) => user.name));
+console.log(totalPrice); // Output: 75
+
+const votes = ["yes", "no", "yes", "yes", "no"];
+
+const voteCount = votes.reduce((acc, vote) => {
+  acc[vote] = (acc[vote] || 0) + 1;
+  return acc;
+}, {});
+
+console.log(voteCount); // Output: { yes: 3, no: 2 }
