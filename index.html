@@ -6,6 +6,22 @@
   <body>
     <h1>JavaScript Started</h1>
 
-    <script src="script.js"></script>
+    <button id="btn">Click Me</button>
+    <script>
+      const button = document.getElementById("btn");
+
+      button.addEventListener("click", () => {
+        console.log("Button clicked!");
+      });
+    </script>
+
+    <input id="nameInput" placeholder="Type your name" />
+    <script>
+      const input = document.getElementById("nameInput");
+
+      input.addEventListener("input", (e) => {
+        console.log("Current value:", e.target.value);
+      });
+    </script>
   </body>
 </html>
