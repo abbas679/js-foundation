@@ -1,55 +1,48 @@
-const fetchData = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (id < 0) {
-        reject("Invalid ID");
-      } else {
-        resolve({ id, name: `User ${id}` });
-      }
-    }, 1000);
-  });
-};
+const loadBtn = document.getElementById("loadBtn");
+const clearBtn = document.getElementById("clearBtn");
+const userList = document.getElementById("userList");
 
-const sequentialCalls = async () => {
+async function loadUsers() {
+  // Task C: disable button while loading
+  loadBtn.disabled = true;
+  loadBtn.textContent = "Loading...";
+
+  userList.innerHTML = "<li>Loading users...</li>";
+
   try {
-    const user1 = await fetchData(1);
-    console.log(user1);
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
 
-    const user2 = await fetchData(2);
-    console.log(user2);
+    if (!response.ok) {
+      throw new Error("Failed to fetch users");
+    }
 
-    const user3 = await fetchData(3);
-    console.log(user3);
+    const users = await response.json();
+
+    userList.innerHTML = "";
+
+    // Task A: show email instead of name
+    users.forEach((user) => {
+      const li = document.createElement("li");
+      li.textContent = user.email;
+      userList.appendChild(li);
+    });
+
+    console.log("Users loaded successfully:", users);
   } catch (error) {
-    console.log("Error:", error);
+    userList.innerHTML = "<li>Error loading users</li>";
+    console.error("Error:", error.message);
+  } finally {
+    // Task C: re-enable button
+    loadBtn.disabled = false;
+    loadBtn.textContent = "Load Users";
   }
-};
+}
 
-sequentialCalls();
+// Task B: clear users
+function clearUsers() {
+  userList.innerHTML = "";
+  console.log("User list cleared");
+}
 
-const parallelCalls = async () => {
-  try {
-    const results = await Promise.all([
-      fetchData(1),
-      fetchData(2),
-      fetchData(3),
-    ]);
-
-    console.log(results);
-  } catch (error) {
-    console.log("Error:", error);
-  }
-};
-
-parallelCalls();
-
-const errorTest = async () => {
-  try {
-    const user = await fetchData(-1);
-    console.log(user);
-  } catch (error) {
-    console.log("Caught error:", error);
-  }
-};
-
-errorTest();
+loadBtn.addEventListener("click", loadUsers);
+clearBtn.addEventListener("click", clearUsers);
