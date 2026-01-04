@@ -1,22 +1,28 @@
-const input = document.getElementById("textInput");
+const scrollDiv = document.getElementById("scrollDiv");
 
-// input.addEventListener("input", (e) => {
-//   console.log("Input value:", e.target.value);
-// });
+//scrollDiv.addEventListener("scroll", () => {
+//  console.log("Scroll position:", scrollDiv.scrollTop);
+//});
 
-function debounce(func, delay) {
-  let timeoutId;
+function throttle(func, delay) {
+  let lastCall = 0;
   return function (...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
       func.apply(this, args);
-    }, delay);
+    }
   };
 }
 
-const logInput = (e) => {
-  console.log("Debounced input:", e.target.value);
+const logScroll = () => {
+  console.log("Throttled scroll position:", scrollDiv.scrollTop);
 };
+/* 500ms (moderate logging frequency)
+scrollDiv.addEventListener("scroll", throttle(logScroll, 500));
 
-// 500ms
-input.addEventListener("input", debounce(logInput, 500));
+100ms (frequent logs, almost real-time)
+scrollDiv.addEventListener("scroll", throttle(logScroll, 100));
+
+1000ms (very sparse logs)*/
+scrollDiv.addEventListener("scroll", throttle(logScroll, 1000));
