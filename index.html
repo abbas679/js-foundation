@@ -1,40 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>JavaScript Foundation</title>
+    <meta charset="UTF-8" />
+    <title>Smart User Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      #controls {
+        margin-bottom: 10px;
+      }
+
+      #results {
+        height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+
+      .user {
+        padding: 6px;
+        border-bottom: 1px solid #eee;
+      }
+
+      mark {
+        background-color: yellow;
+        font-weight: bold;
+      }
+
+      button {
+        margin-left: 5px;
+      }
+    </style>
   </head>
   <body>
-    <h1>JavaScript Started</h1>
+    <h2>User Search</h2>
 
-    <body>
-      <div
-        id="scrollDiv"
-        style="
-          height: 150px;
-          width: 300px;
-          overflow-y: scroll;
-          border: 1px solid black;
-        "
-      >
-        <p>Line 1</p>
-        <p>Line 2</p>
-        <p>Line 3</p>
-        <p>Line 4</p>
-        <p>Line 5</p>
-        <p>Line 6</p>
-        <p>Line 7</p>
-        <p>Line 8</p>
-        <p>Line 9</p>
-        <p>Line 10</p>
-        <p>Line 11</p>
-        <p>Line 12</p>
-        <p>Line 13</p>
-        <p>Line 14</p>
-        <p>Line 15</p>
-      </div>
-      <p>Open console and scroll the box</p>
+    <div id="controls">
+      <input id="searchInput" placeholder="Search users..." />
+      <button id="clearBtn">Clear</button>
+    </div>
 
-      <script src="script.js" defer></script>
-    </body>
+    <p id="status"></p>
+
+    <div id="results"></div>
+
+    <script src="script.js"></script>
   </body>
 </html>
